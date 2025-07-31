@@ -1,0 +1,10 @@
+[
+    {
+        "role": "user",
+        "content": "Hi , how are you?"
+    },
+    {
+        "role": "assistant",
+        "content": "I\u2019m doing pretty well, thanks for asking! As an AI, I don't really *feel* anything, but my systems are running smoothly and I'm ready to chat. \ud83d\ude0a \n\nHow are *you* doing today? Is there anything you\u2019d like to talk about or do?"
+    }
+]

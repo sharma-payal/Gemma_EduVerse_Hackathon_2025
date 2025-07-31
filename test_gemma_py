@@ -1,0 +1,70 @@
+
+import ollama
+import sys
+import pyttsx3
+from vosk import Model, KaldiRecognizer, set_log_level
+import cv2 # Used by opencv-python-headless, so just checking import works
+from PIL import Image # Pillow library
+
+print("--- Starting Gemma Offline EduVerse Environment Test ---")
+
+# --- Test Ollama/Gemma 3n Interaction ---
+print("\nAttempting to connect to Ollama and Gemma 3n...")
+try:
+    # It's good practice to ensure the model is available, though you just pulled it
+    # ollama.pull('gemma3:4b') # Not strictly needed here as already pulled
+
+    # Test a simple chat interaction
+    response = ollama.chat(model='gemma3:4b', messages=[
+        {'role': 'user', 'content': 'Explain the concept of photosynthesis in simple terms for a 10-year-old.'}
+    ])
+    print("\n--- Gemma 3n Response ---")
+    print(response['message']['content'])
+    print("\nOllama/Gemma 3n test successful!")
+except Exception as e:
+    print(f"\nERROR: Could not connect to Ollama or run Gemma 3n.")
+    print(f"Details: {e}")
+    print("Please ensure Ollama desktop application is running and 'ollama pull gemma3:4b' was successful.")
+    sys.exit(1) # Exit if core AI component fails
+
+# --- Test pyttsx3 (Text-to-Speech) ---
+print("\n--- Basic pyttsx3 (Text-to-Speech) Test ---")
+try:
+    engine = pyttsx3.init()
+    # You can adjust voice properties here if you want
+    # voices = engine.getProperty('voices')
+    # engine.setProperty('voice', voices[0].id) # Try changing index for different voices
+    engine.say("Hello from Gemma Offline EduVerse! Your text to speech is working.")
+    engine.runAndWait()
+    print("pyttsx3 test successful!")
+except Exception as e:
+    print(f"ERROR: pyttsx3 test failed.")
+    print(f"Details: {e}")
+    print("Make sure necessary system TTS components are installed (e.g., espeak-ng on Linux).")
+
+# --- Test Vosk (Speech-to-Text - Library Import Only) ---
+print("\n--- Basic Vosk (Speech-to-Text) Library Import Test ---")
+try:
+    set_log_level(-1) # Suppress Vosk logs for cleaner output
+    # You don't need to load a model for just checking the import
+    # We'll load a small Vosk model later when we build the voice feature.
+    print("Vosk library imported successfully.")
+except Exception as e:
+    print(f"ERROR: Vosk library import test failed.")
+    print(f"Details: {e}")
+    print("Ensure 'vosk' is correctly installed in your virtual environment.")
+
+# --- Test Pillow & OpenCV (Image Processing Libraries) ---
+print("\n--- Basic Pillow & OpenCV (Image Processing) Library Import Test ---")
+try:
+    _ = Image.new('RGB', (1,1)) # Simple Pillow test
+    _ = cv2.cuda.getCudaEnabledDeviceCount() # Simple OpenCV test (even if 0 devices, it imports)
+    print("Pillow and OpenCV libraries imported successfully.")
+except Exception as e:
+    print(f"ERROR: Pillow or OpenCV library import test failed.")
+    print(f"Details: {e}")
+    print("Ensure 'Pillow' and 'opencv-python-headless' are correctly installed.")
+
+
+print("\n--- All core environment tests completed. ---")
+print("If all tests passed, you are ready to start building the application!")

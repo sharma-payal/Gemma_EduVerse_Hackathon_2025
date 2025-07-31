@@ -1,0 +1,20 @@
+
+[theme]
+# Primary accent color (a classy sky blue)
+primaryColor="#4CAF50" # This is a slightly muted green that often pairs well. For pure sky blue, you can try #5DADE2 or #87CEEB. Let's go with a more muted blue for "classy" or a subtle green accent.
+# Let's try #3498DB for a standard vibrant blue, or #5DADE2 for a softer, classy sky blue.
+
+# Update: For "classy sky blue", let's use a slightly muted but elegant blue.
+primaryColor="#5DADE2" # A soft, elegant sky blue
+
+# Background color of the main content area (deep dark grey)
+backgroundColor="#1A1A2E" # Dark, almost black background
+
+# Background color of sidebar and secondary elements (slightly lighter dark grey)
+secondaryBackgroundColor="#272740" # A deep blue-grey for contrast
+
+# Color of the text (bright white for good contrast)
+textColor="#FFFFFF" # White
+
+# Font family (sans serif for modern look)
+font="sans serif"
